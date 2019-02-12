@@ -1,0 +1,11 @@
+{
+  "name": "hangman_game",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "devlucasrocha",
+  "license": "MIT"
+}
