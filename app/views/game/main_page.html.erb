@@ -1,5 +1,37 @@
 <div class="container">
     <div class="box">
-        <h1>Hangman Game - Rails!</h1>
+        <nav class="navbar navbar-light bg-danger ">
+        <%= link_to '#', class:"navbar-brand" do %>
+            <%= image_tag ('https://bit.ly/2Dx67Wk'), size: '30x30', class:"d-inline-block align-top", alt:"" %>
+        The Game!
+    <% end %>
+    </nav>
+        <h1>Hangman Game - Rails! </h1>
+        <% word = toArray("Spring") %>
+
+        <div id='letters'>
+            <% word.each do |e| %>
+                <%= link_to e, '#', class:"btn btn-primary", id:e, onclick:'click()'%>
+            <% end %>
+        <div>
+
     </div>
 </div>
+
+<script>
+    var el = document.getElementById('letters');
+    el.addEventListener('click', function(e) {
+        id = e.target.id
+        let word = '<%= word.join('') %>'
+        word = word.split("")
+        
+        function logArrayElements(element, index, array) {
+            var inside = element === id
+            if (inside) {
+                var element = document.getElementById(id);
+                element.parentNode.removeChild(element);
+            }
+        }
+        word.forEach(logArrayElements);
+    })
+</script>
