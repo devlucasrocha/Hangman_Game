@@ -1,7 +1,7 @@
 module ApplicationHelper
     def toArray(word)
         word_array = word.upcase.split('')
-        rand_letters = ((0...10).map { randLetter(word_array) }.join).split('')
+        rand_letters = ((0...12).map { randLetter(word_array) }.join).split('')
         word_array += rand_letters
         word_string = word.upcase
         return [word_array.shuffle!, word_string]

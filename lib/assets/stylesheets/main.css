@@ -13,6 +13,7 @@
 }
 .letters {
     text-align: center;
+    font-size: 190%;
 }
 .heart {
     display: inline-block;

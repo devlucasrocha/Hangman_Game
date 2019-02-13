@@ -1,7 +1,7 @@
 <div class="container">
     <div class="box">
-        <nav class="navbar navbar-light bg-danger ">
-        <%= link_to '#', class:"navbar-brand" do %>
+        <nav class="navbar navbar-light bg-danger">
+        <%= link_to '#', class:"navbar-brand text-white" do %>
             <%= image_tag ('https://bit.ly/2Dx67Wk'), size: '30x30', class:"d-inline-block align-top", alt:"" %>
         The Game!
     <% end %>
@@ -15,7 +15,7 @@
             <% c = 0%>
             <% word.each do |e| %>
 
-                <%= button_tag(type: 'button', id:c, class:"btn btn-primary", value:e) do %>
+                <%= button_tag(type: 'button', id:c, class:"btn btn-primary shadow", value:e) do %>
                     <%= e %>
                 <% end %>
                 <% c+=1 %>
@@ -28,13 +28,13 @@
 <script>
     var el = document.getElementById('letters');
     el.addEventListener('click', function(e) {
-        id = e.target.id
+        const id = e.target.id.toString()
         if (id === 'letters') { return }
         let word = '<%= word.join('') %>'
         word = word.split("")
         var secret_word = ('<%= secret_word %>')
         function logArrayElements(element, index, array) {
-            var getValue = document.getElementById(id.toString()).value
+            var getValue = document.getElementById(id).value
             var value = getValue
             var inside = secret_word.includes(value)
             console.log(inside)
@@ -50,7 +50,7 @@
                 }
                 return
             } else {
-                document.getElementById(id.toString()).className = "btn btn-success";
+                document.getElementById(id).className = "btn btn-success";
             }
         }
         word.forEach(logArrayElements);
