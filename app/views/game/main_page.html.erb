@@ -8,9 +8,9 @@
     </nav>
         <h1>Hangman Game - Rails! </h1>
         <h3>Health: <span id="health">3</span></h3>
-        <% secret_word = "BALL" %>
+        <% secret_word = "HOUSE" %>
         <% word = toArray(secret_word)[0] %>
-        <%= toArray(secret_word)[1] %>
+        <p>Secret word: <%= toArray(secret_word)[1] %></p>
         <div id='letters' class="letters">
             <% c = 0%>
             <% word.each do |e| %>
@@ -29,20 +29,19 @@
     var el = document.getElementById('letters');
     el.addEventListener('click', function(e) {
         id = e.target.id
-        if (id === 'letters') {
-            return
-        }
+        if (id === 'letters') { return }
         let word = '<%= word.join('') %>'
         word = word.split("")
         var secret_word = ('<%= secret_word %>')
         function logArrayElements(element, index, array) {
-            var value = document.getElementById(id.toString()).value
+            var getValue = document.getElementById(id.toString()).value
+            var value = getValue
             var inside = secret_word.includes(value)
             console.log(inside)
             if (!inside) {
-                var element = document.getElementById(id);
-                element.parentNode.removeChild(element);
+                var element = document.getElementById(id).className = "btn btn-danger";
                 var health = parseInt(document.getElementById('health').innerHTML) - 1
+                return
                 if (health >= 1) {
                     document.getElementById('health').innerHTML = health
                 } else {

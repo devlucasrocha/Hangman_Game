@@ -2,7 +2,8 @@
   "name": "hangman_game",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.0"
+    "bootstrap": "^4.3.0",
+    "jquery": "^3.3.1"
   },
   "version": "1.0.0",
   "main": "index.js",
