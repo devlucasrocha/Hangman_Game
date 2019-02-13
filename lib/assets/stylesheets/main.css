@@ -11,6 +11,9 @@
     height: 600px;
     background: #fff;
 }
+.letters {
+    text-align: center;
+}
 body {
 margin: 0px;
 }
