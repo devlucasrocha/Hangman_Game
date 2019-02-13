@@ -46,6 +46,7 @@
                 if (health == 0) {
                     document.getElementById("health").className = "text-danger"
                     document.getElementById("health").innerHTML = "GAME OVER!"
+                    disableDiv()
                     sleep(3000).then(() => {
                         location.reload()
                     })
@@ -53,11 +54,24 @@
                 return null
             } else {
                 document.getElementById(id).className = "btn btn-success";
+                let corrects = document.getElementsByClassName("btn btn-success").length
+                if (corrects === secret_word.length) {
+                    document.getElementById("health").className = "text-success"
+                    document.getElementById("health").innerHTML = "CONGRATULATIONS!"
+                    disableDiv()
+                    sleep(3000).then(() => {
+                        location.reload()
+                    })
+                }
             }
         }
         word.forEach(logArrayElements);
     })
 
+    const disableDiv = _ => {
+        $("#letters").addClass("disabledbutton")
+    }
+    
     const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     }

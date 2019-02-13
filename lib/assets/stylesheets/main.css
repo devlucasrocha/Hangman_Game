@@ -28,3 +28,8 @@ margin: 0px;
 h1 {
     text-align: center;
 }
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.6;
+}
