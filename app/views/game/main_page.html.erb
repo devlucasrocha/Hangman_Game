@@ -7,7 +7,7 @@
     <% end %>
     </nav>
         <h1>Hangman Game - Rails! </h1>
-        <h3>Health: <span id="health">3</span></h3>
+        <h3>Health: <span id="health">4</span></h3>
         <% secret_word = "HOUSE" %>
         <% word = toArray(secret_word)[0] %>
         <p>Secret word: <%= toArray(secret_word)[1] %></p>
@@ -33,6 +33,7 @@
         let word = '<%= word.join('') %>'
         word = word.split("")
         var secret_word = ('<%= secret_word %>')
+        var remaining = 4
         function logArrayElements(element, index, array) {
             var getValue = document.getElementById(id).value
             var value = getValue
@@ -40,19 +41,24 @@
             console.log(inside)
             if (!inside) {
                 var element = document.getElementById(id).className = "btn btn-danger";
-                var health = parseInt(document.getElementById('health').innerHTML) - 1
-                return
-                if (health >= 1) {
-                    document.getElementById('health').innerHTML = health
-                } else {
-                    alert("GAME OVER!")
-                    location.reload()
+                var health = document.getElementsByClassName("btn btn-danger").length * (-1) + remaining
+                document.getElementById('health').innerHTML = health
+                if (health == 0) {
+                    document.getElementById("health").className = "text-danger"
+                    document.getElementById("health").innerHTML = "GAME OVER!"
+                    sleep(3000).then(() => {
+                        location.reload()
+                    })
                 }
-                return
+                return null
             } else {
                 document.getElementById(id).className = "btn btn-success";
             }
         }
         word.forEach(logArrayElements);
     })
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
 </script>
