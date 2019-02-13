@@ -7,14 +7,19 @@
     <% end %>
     </nav>
         <h1>Hangman Game - Rails! </h1>
-        <% word = toArray("Spring") %>
-
+        <% secret_word = "BOLA" %>
+        <% word = toArray(secret_word)[0] %>
+        <%= toArray(secret_word)[1] %>
         <div id='letters'>
+            <% c = 0%>
             <% word.each do |e| %>
-                <%= link_to e, '#', class:"btn btn-primary", id:e, onclick:'click()'%>
-            <% end %>
-        <div>
 
+                <%= button_tag(type: 'button', id:c, class:"btn btn-primary", value:e) do %>
+                    <%= e %>
+                <% end %>
+                <% c+=1 %>
+            <% end %>
+        </div>
     </div>
 </div>
 
@@ -22,14 +27,22 @@
     var el = document.getElementById('letters');
     el.addEventListener('click', function(e) {
         id = e.target.id
+        if (id === 'letters') {
+            return
+        }
         let word = '<%= word.join('') %>'
         word = word.split("")
-        
+        var secret_word = ('<%= secret_word %>')
         function logArrayElements(element, index, array) {
-            var inside = element === id
-            if (inside) {
+            var value = document.getElementById(id.toString()).value
+            var inside = secret_word.includes(value)
+            console.log(inside)
+            if (!inside) {
                 var element = document.getElementById(id);
                 element.parentNode.removeChild(element);
+                return
+            } else {
+                document.getElementById(id.toString()).className = "btn btn-success";
             }
         }
         word.forEach(logArrayElements);
