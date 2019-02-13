@@ -7,7 +7,7 @@
     <% end %>
     </nav>
         <h1>Hangman Game - Rails! </h1>
-        <h3>Health: <span id="vidas">3</span></h3>
+        <h3>Health: <span id="health">3</span></h3>
         <% secret_word = "BALL" %>
         <% word = toArray(secret_word)[0] %>
         <%= toArray(secret_word)[1] %>
@@ -42,11 +42,12 @@
             if (!inside) {
                 var element = document.getElementById(id);
                 element.parentNode.removeChild(element);
-                var health = parseInt(document.getElementById('vidas').innerHTML) - 1
+                var health = parseInt(document.getElementById('health').innerHTML) - 1
                 if (health >= 1) {
-                    document.getElementById('vidas').innerHTML = health
+                    document.getElementById('health').innerHTML = health
                 } else {
                     alert("GAME OVER!")
+                    location.reload()
                 }
                 return
             } else {
