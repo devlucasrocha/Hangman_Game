@@ -1,14 +1,14 @@
 <div class="container">
     <div class="box">
         <nav class="navbar navbar-light bg-danger">
-        <%= link_to '#', class:"navbar-brand text-white" do %>
+        <%= link_to '#', class:"text-white navbar-brand" do %>
             <%= image_tag ('https://bit.ly/2Dx67Wk'), size: '30x30', class:"d-inline-block align-top", alt:"" %>
-        The Game!
-    <% end %>
-    </nav>
+            The Game!
+        <% end %>
+        </nav>
         <h1>Hangman Game - Rails! </h1>
         <h3>Health: <span id="health">4</span></h3>
-        <% secret_word = "HOUSE" %>
+        <% secret_word = @words.word  %>
         <% word = toArray(secret_word)[0] %>
         <p>Secret word: <%= toArray(secret_word)[1] %></p>
         <div id='letters' class="letters">
