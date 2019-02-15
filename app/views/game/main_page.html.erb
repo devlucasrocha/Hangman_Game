@@ -18,7 +18,13 @@
         <% secret_word = @words.word  %>
         <% word = toArray(secret_word)[0] %>
         <p>Secret word: <%= toArray(secret_word)[1] %></p>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br>
+        <div style="text-align: center;" id="whiteEspaces">
+            <% secret_word.size.times do |i| %>
+                <h3 id="wE_<%= i %>">__</h3>
+            <% end %>
+        </div>
+        <br><br><br><br>
         <div id='letters' class="letters">
             <% c = 0%>
             <% word.each do |e| %>
@@ -38,7 +44,7 @@
     el.addEventListener('click', function(e) {
         const id = e.target.id.toString()
         if (id === 'letters') { return }
-        let word = '<%= word.join('') %>'
+        let  word= '<%= word.join('') %>'
         word = word.split("")
         var secret_word = ('<%= secret_word %>')
         var remaining = 4
@@ -46,7 +52,8 @@
             var getValue = document.getElementById(id).value
             var value = getValue
             var inside = secret_word.includes(value)
-            console.log(inside)
+            let keyPressed = getValue
+            //console.log(inside)
             if (!inside) {
                 var element = document.getElementById(id).className = "btn btn-danger";
                 var health = document.getElementsByClassName("btn btn-danger").length * (-1) + remaining
@@ -68,8 +75,12 @@
                 return null
             } else {
                 document.getElementById(id).className = "btn btn-success";
+                setButtonClass(word, keyPressed, "btn btn-success")
+                pushLetters(secret_word, keyPressed)
                 let corrects = document.getElementsByClassName("btn btn-success").length
-                if (corrects === secret_word.length) {
+                let notWhiteEspaces = document.getElementsByName("not_wE").length
+                let allCorrects = corrects === secret_word.length || secret_word.length === notWhiteEspaces
+                if (allCorrects ) {
                     document.getElementById("health").className = "text-success"
                     document.getElementById("health").innerHTML = "CONGRATULATIONS!"
                     disableDiv()
@@ -81,6 +92,24 @@
         }
         word.forEach(logArrayElements);
     })
+
+    const setButtonClass = (word, keyPressed, classBootstrap) => {
+        for (let c = 0; c < word.length; c++) {
+            if (word[c] == keyPressed) {
+                console.log(c, keyPressed)
+                document.getElementById(c).className = classBootstrap;
+            }
+        }
+    }
+
+    const pushLetters = (secret_word, keyPressed) => {
+        for (let pos in secret_word) {
+            if (secret_word[pos] === keyPressed) {
+                document.getElementById(`wE_${pos}`).innerHTML = keyPressed;
+                $('#wE_' + pos).attr('name', 'not_wE');
+            }
+        }
+    }
 
     const disableDiv = _ => {
         $("#letters").addClass("disabledbutton")
