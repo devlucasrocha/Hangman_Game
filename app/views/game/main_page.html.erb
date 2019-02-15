@@ -8,9 +8,17 @@
         </nav>
         <h1>Hangman Game - Rails! </h1>
         <h3>Health: <span id="health">4</span></h3>
+
+        <div id="hearts" style="text-align: right; margin-right: 10px;display: inline-block;float: right;">
+            <% 4.times do |i| %>
+                <%= image_tag 'https://bit.ly/2BCFoHP', size:"40x40", id:"heart_#{i}" %>
+            <% end %>
+        </div>
+
         <% secret_word = @words.word  %>
         <% word = toArray(secret_word)[0] %>
         <p>Secret word: <%= toArray(secret_word)[1] %></p>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
         <div id='letters' class="letters">
             <% c = 0%>
             <% word.each do |e| %>
@@ -42,6 +50,12 @@
             if (!inside) {
                 var element = document.getElementById(id).className = "btn btn-danger";
                 var health = document.getElementsByClassName("btn btn-danger").length * (-1) + remaining
+                heart = document.getElementById("heart_"+health)
+                if (health === 0) {
+                    $("#heart_"+health).addClass("disabledbutton")
+                } else {
+                    $("#heart_"+health).hide()
+                }
                 document.getElementById('health').innerHTML = health
                 if (health == 0) {
                     document.getElementById("health").className = "text-danger"
