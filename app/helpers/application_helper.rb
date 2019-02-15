@@ -14,4 +14,12 @@ module ApplicationHelper
             return gene if !check
         end
     end
+
+    def colorBody
+        if params[:controller] == "words"
+            "white"
+        else
+            "orange"
+        end
+    end
 end

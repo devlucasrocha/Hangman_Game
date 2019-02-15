@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Words</h1>
+<h1>Words DATABASE</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>ID</th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @words.each do |word| %>
       <tr>
-        <td><%= word.id %></td>
+        <td><strong><%= word.id %></strong></td>
         <td><%= word.word %></td>
         <td><%= link_to 'Show', word %></td>
         <td><%= link_to 'Edit', edit_word_path(word) %></td>
