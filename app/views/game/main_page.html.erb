@@ -6,10 +6,11 @@
             The Game!
         <% end %>
         </nav>
-        <h1>Hangman Game - Rails! </h1>
+        <!--<h1>Hangman Game - Rails! </h1>-->
+        <br>
         <h3 style="visibility:hidden">Health: <span id="health">4</span></h3>
 
-        <div id="hearts" style="text-align: right; margin-right: 10px;display: inline-block;float: right;">
+        <div id="hearts" style="text-align: center; margin-right: 10px;display: inline-block;float: right;">
             <% 4.times do |i| %>
                 <%= image_tag 'https://bit.ly/2BCFoHP', size:"40x40", id:"heart_#{i}" %>
             <% end %>
@@ -17,11 +18,13 @@
 
         <% secret_word = @words.word  %>
         <% word = toArray(secret_word)[0] %>
-        <p>Secret word: <%= toArray(secret_word)[1] %></p>
-        <br><br><br><br><br><br><br><br><br><br>
+        <!--<p>Secret word: <%= toArray(secret_word)[1] %></p>-->
+        <br>
+        <canvas style="border: 1px solid black;float:left;" onmousemove="showCoords(event)"></canvas>
+        <br><br><br><br><br><br><br><br>
         <div style="text-align: center;" id="whiteEspaces">
             <% secret_word.size.times do |i| %>
-                <h3 id="wE_<%= i %>">__</h3>
+                <h3 id="wE_<%= i %>">_</h3>
             <% end %>
         </div>
         <br>
@@ -40,6 +43,90 @@
 </div>
 
 <script>
+    let canvas = document.querySelector('canvas')
+
+    canvas.width = 400
+    canvas.height = 430 // 450
+
+    let c = canvas.getContext('2d')
+
+    drawnStructure(10)
+
+    function legs(height) {
+        // left
+        c.beginPath()
+        c.moveTo(180, 300)
+        c.lineTo(235, height + 155)
+
+        // right
+        c.moveTo(150 * 2, 300)
+        c.lineTo(235, height + 155)
+
+        c.lineWidth = 10;
+        c.strokeStyle = 'blue'
+        c.stroke()
+    }
+
+    function arms(height) {
+        // left
+        c.beginPath()
+        c.moveTo(180, 170)
+        c.lineTo(235, height + 20)
+
+        // right
+        c.moveTo(150 * 2, 170)
+        c.lineTo(235, height + 18)
+
+        c.lineWidth = 10;
+        c.strokeStyle = 'blue'
+        c.stroke()
+    }
+
+    function body() {
+        c.fillStyle = 'blue'
+        c.fillRect(231, 109, 10, 150)
+    }
+
+    function head() {
+        c.lineWidth = 10;
+        c.beginPath()
+        c.arc(235, 75, 30, Math.PI * 2, false)
+        c.strokeStyle = 'blue'
+        c.stroke()
+    }
+
+    function drawnStructure(def = 0) {
+        c.fillStyle = 'brown'
+        c.fillRect(def, def, 10, 350)
+        c.fillRect(def, def, 230, 10)
+        c.fillRect(def, 350 + def, 200, 10)
+
+        // corda
+        c.fillStyle = 'black'
+        c.fillRect(220+def, 10+def, 10, 20)
+
+        // diagonal;
+        c.beginPath()
+        c.moveTo(def + 5, 100 + def)
+        c.lineTo(100 + def, def + 5)
+        c.lineWidth = 10;
+        c.strokeStyle = 'brown'
+        c.stroke()
+    }
+
+    function showCoords(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+        var coords = "X coords: " + x + ", Y coords: " + y;
+        c.stroke()
+        document.getElementById("demo").innerHTML = coords;
+    }
+
+
+
+
+
+//////////////////////////////
     var el = document.getElementById('letters');
     el.addEventListener('click', function(e) {
         const id = e.target.id.toString()
@@ -57,6 +144,16 @@
             if (!inside) {
                 var element = document.getElementById(id).className = "btn btn-danger";
                 var health = document.getElementsByClassName("btn btn-danger").length * (-1) + remaining
+                console.log(health)
+                if (health === 3) {
+                    head()
+                } else if (health === 2) {
+                    body()
+                } else if (health === 1) {
+                    arms(100)
+                } else if (health === 0) {
+                    legs(100)
+                }
                 heart = document.getElementById("heart_"+health)
                 if (health === 0) {
                     $("#heart_"+health).addClass("disabledbutton")
