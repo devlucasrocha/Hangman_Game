@@ -23,8 +23,8 @@
         <canvas style="border: 1px solid black;float:left;" onmousemove="showCoords(event)"></canvas>
         <br><br><br>
 
-        <div id="showSecretWord" style="text-align: center;border: 0px solid black;margin-left: 350px;padding: 10px;visibility:hidden">
-            <h2><%= secret_word %></h2>
+        <div id="showSecretWord" style="text-align: center;border: 0px solid black;margin-left: 350px;padding: 10px;color: red;visibility:hidden">
+            <h2 style="font-size: 260%"><%= secret_word %></h2>
         </div>
         <br><br>
 
@@ -105,7 +105,7 @@
         c.fillStyle = 'brown'
         c.fillRect(def, def, 10, 350)
         c.fillRect(def, def, 230, 10)
-        c.fillRect(def, 350 + def, 200, 10)
+        c.fillRect(def, 350 + def, 130, 10)
 
         // corda
         c.fillStyle = 'black'
