@@ -1,14 +1,14 @@
 <div class="container">
     <div class="box">
         <nav class="navbar navbar-light bg-danger">
-        <%= link_to '#', class:"text-white navbar-brand" do %>
+        <%= link_to root_path, class:"text-white navbar-brand" do %>
             <%= image_tag ('https://bit.ly/2Dx67Wk'), size: '30x30', class:"d-inline-block align-top", title:"Hangman Game" %>
             The Game!
         <% end %>
         </nav>
         <!--<h1>Hangman Game - Rails! </h1>-->
         <br>
-        <h3 style="visibility:hidden">Health: <span id="health">4</span></h3>
+        <h3 style="visibility:none">Health: <span id="health">4</span></h3>
 
         <div id="hearts" style="text-align: center; margin-right: 10px;display: inline-block;float: right;">
             <% 4.times do |i| %>
@@ -19,9 +19,15 @@
         <% secret_word = @words.word  %>
         <% word = toArray(secret_word)[0] %>
         <!--<p>Secret word: <%= toArray(secret_word)[1] %></p>-->
-        <br>
+        <br><br>
         <canvas style="border: 1px solid black;float:left;" onmousemove="showCoords(event)"></canvas>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br>
+
+        <div id="showSecretWord" style="text-align: center;border: 0px solid black;margin-left: 350px;padding: 10px;visibility:hidden">
+            <h2><%= secret_word %></h2>
+        </div>
+        <br><br>
+
         <div style="text-align: center;" id="whiteEspaces">
             <% secret_word.size.times do |i| %>
                 <h3 id="wE_<%= i %>">_</h3>
@@ -45,7 +51,7 @@
 <script>
     let canvas = document.querySelector('canvas')
 
-    canvas.width = 400
+    canvas.width = 350
     canvas.height = 430 // 450
 
     let c = canvas.getContext('2d')
@@ -119,7 +125,7 @@
         var y = event.clientY;
         var coords = "X coords: " + x + ", Y coords: " + y;
         c.stroke()
-        document.getElementById("demo").innerHTML = coords;
+        //document.getElementById("demo").innerHTML = coords;
     }
 
 
@@ -162,6 +168,7 @@
                 }
                 document.getElementById('health').innerHTML = health
                 if (health == 0) {
+                    document.getElementById("showSecretWord").style.visibility = "visible"
                     document.getElementById("health").className = "text-danger"
                     document.getElementById("health").innerHTML = "GAME OVER!"
                     disableDiv()
