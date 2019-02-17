@@ -2,9 +2,6 @@
 
 <div class="container-fluid container">
     <div class="jumbotron">
-        <span class="text-danger">
-            <p id="notice"><%= notice %></p>
-        </span>
         <%= render 'form', word: @word %>
         <br>
         <%= link_to 'Back', words_path, class:"btn btn-primary" %>
@@ -12,4 +9,22 @@
 </div>
 <% 10.times do |e| %>
     <br>
+<% end %>
+
+<% if !notice.nil? %>
+    <% alreadyExist = notice.include?("already") %>
+    <% colorMsg = "" %>
+    <% if alreadyExist %>
+        <% colorMsg = 'error' %>
+    <% else %>
+        <% colorMsg = 'success' %>
+    <% end %>
+        <script>
+            new Noty({
+                    theme: 'nest',
+                    type: '<%= colorMsg %>',
+                    layout: 'topRight',
+                    text: '<%= notice %>'
+            }).show();
+        </script>
 <% end %>

@@ -14,4 +14,5 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery/dist/jquery
+//= require noty/lib/noty
 //= require bootstrap/dist/js/bootstrap
