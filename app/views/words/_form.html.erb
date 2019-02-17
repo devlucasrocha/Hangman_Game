@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :word %>
-    <%= form.text_field :word %>
+    <%= form.text_field :word, class:"form-control", placeholder:"Enter some word" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit nil, class:"btn btn-primary" %>
   </div>
 <% end %>

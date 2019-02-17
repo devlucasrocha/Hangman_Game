@@ -1,6 +1,15 @@
+<br>
 <h1>Editing Word</h1>
+<br><br>
+<div class="container-fluid container">
+    <div class="jumbotron">
+        <%= render 'form', word: @word %>
+        <br>
+        <%= link_to 'Show', @word, class:"btn btn-primary" %> |
+        <%= link_to 'Back', words_path, class:"btn btn-primary" %>
+    </div>
+</div>
 
-<%= render 'form', word: @word %>
-
-<%= link_to 'Show', @word %> |
-<%= link_to 'Back', words_path %>
+<% 10.times do |a| %>
+    <br>
+<% end %>

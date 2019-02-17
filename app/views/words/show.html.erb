@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Word:</strong>
-  <%= @word.word %>
-</p>
+<h1>Showing Word</h1>
+<br><br>
+<div class="container-fluid container">
+    <div class="jumbotron">
+      <div class="form-group">
+        <strong>Word:</strong>
+        <%= text_field_tag nil, @word.word, class:"form-control", placeholder:"Enter some word", disabled:true %>
+      </div>
 
-<%= link_to 'Edit', edit_word_path(@word) %> |
-<%= link_to 'Back', words_path %>
+      <%= link_to 'Edit', edit_word_path(@word), class:"btn btn-primary" %> |
+      <%= link_to 'Back', words_path, class:"btn btn-primary" %>
+  </div>
+</div>
+
+<% 10.times do |a| %>
+  <br>
+<% end %>

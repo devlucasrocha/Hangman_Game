@@ -1,5 +1,12 @@
 <h1>New Word</h1>
 
-<%= render 'form', word: @word %>
-
-<%= link_to 'Back', words_path %>
+<div class="container-fluid container">
+    <div class="jumbotron">
+        <%= render 'form', word: @word %>
+        <br>
+        <%= link_to 'Back', words_path, class:"btn btn-primary" %>
+    </div>
+</div>
+<% 10.times do |e| %>
+    <br>
+<% end %>
