@@ -25,15 +25,20 @@ class WordsController < ApplicationController
   # POST /words.json
   def create
     @word = Word.new(word_params)
-
-    respond_to do |format|
-      if @word.save
-        format.html { redirect_to new_word_path, notice: 'Word was successfully created.' }
-        format.json { render :show, status: :created, location: @word }
-      else
-        format.html { render :new }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
+    @word.word = @word.word.split(" ")[0].upcase
+    included = validate_new_word
+    if !included
+      respond_to do |format|
+        if @word.save
+          format.html { redirect_to new_word_path, notice: 'Word was successfully created.' }
+          format.json { render :show, status: :created, location: @word }
+        else
+          format.html { render :new }
+          format.json { render json: @word.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to new_word_path, notice: 'This word already exists.'
     end
   end
 
@@ -70,5 +75,12 @@ class WordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
       params.require(:word).permit(:word)
+    end
+    
+    def validate_new_word
+      words = Word.all.pluck(:word)
+      included = words.include?(@word.word)
+      puts "\n\n\n+++++ #{words} - #{@word.word} = #{included} ++++\n\n"
+      included
     end
 end

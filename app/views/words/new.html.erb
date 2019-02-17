@@ -2,6 +2,9 @@
 
 <div class="container-fluid container">
     <div class="jumbotron">
+        <span class="text-danger">
+            <p id="notice"><%= notice %></p>
+        </span>
         <%= render 'form', word: @word %>
         <br>
         <%= link_to 'Back', words_path, class:"btn btn-primary" %>
