@@ -25,11 +25,14 @@
         <% end %>
       </tbody>
     </table>
+    <br>
+    <div class="container pagination justify-content-center" >
+      <%= paginate @words, pagination_class: "pagination-sm" %>
+    </div>
   </div>
 </div>
-
 <br>
 
-<div style="text-align: center;">
+<div class="text-center">
   <%= link_to 'New Word', new_word_path, class:"btn btn-primary" %>
 </div>
