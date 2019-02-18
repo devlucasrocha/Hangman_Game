@@ -20,3 +20,12 @@
     <%= form.submit nil, class:"btn btn-primary" %>
   </div>
 <% end %>
+
+<script>
+  $(function() {
+      $('#word_word').on('keypress', function(e) {
+          if (e.which == 32)
+              return false;
+      })
+  })
+</script>
