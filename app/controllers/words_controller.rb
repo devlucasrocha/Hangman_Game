@@ -78,9 +78,8 @@ class WordsController < ApplicationController
     end
     
     def validate_new_word
-      words = Word.all.pluck(:word)
-      included = words.include?(@word.word)
-      puts "\n\n\n+++++ #{words} - #{@word.word} = #{included} ++++\n\n"
+      included = Word.where(word: @word.word).exists?
+      puts "\n\n\n+++++ #{@word.word} = #{included} ++++\n\n"
       included
     end
 end
