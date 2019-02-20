@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<div class="text-right mr-3 mt-3 mb-3">
+  <%= link_to('Logout', destroy_admin_session_path, method: :delete, class:"btn btn-danger", style:"border: 3px solid white;")%>
+</div>
 <div class="container-fluid">
   <div class="container">
   <h1 class="display-4 bg-white p-2">RANDOM WORDS DATABASE</h1>
