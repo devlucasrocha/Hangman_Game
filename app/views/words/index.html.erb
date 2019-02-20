@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div class="text-right mr-3 mt-3 mb-3">
   <%= link_to('Logout', destroy_admin_session_path, method: :delete, class:"btn btn-danger", style:"border: 3px solid white;")%>
 </div>
@@ -37,3 +36,13 @@
 <div class="text-center">
   <%= link_to 'New Word', new_word_path, class:"btn btn-primary" %>
 </div>
+<% if !notice.nil? %>
+    <script>
+        new Noty({
+          theme: 'nest',
+          type: 'success',
+          layout: 'topRight',
+          text: '<%= notice %>'
+        }).show();
+    </script>
+<% end %>
