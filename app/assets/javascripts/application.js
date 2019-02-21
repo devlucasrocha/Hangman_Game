@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery/dist/jquery
 //= require noty/lib/noty
+//= require popper.js/dist/umd/popper.min
 //= require bootstrap/dist/js/bootstrap

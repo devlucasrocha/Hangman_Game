@@ -1,7 +1,7 @@
 <div class="container-main">
     <div class="box">
         <nav class="navbar navbar-light bg-danger">
-        <%= link_to root_path, class:"text-white navbar-brand" do %>
+        <%= link_to root_path, class:"text-white navbar-brand", onclick:"{location.reload()}" do %>
             <%= image_tag ('https://bit.ly/2Dx67Wk'), size: '30x30', class:"d-inline-block align-top", title:"Hangman Game" %>
             The Game!
         <% end %>

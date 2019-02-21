@@ -2,13 +2,17 @@
   "name": "hangman_game",
   "private": true,
   "dependencies": {
+    "@rails/webpacker": "3.5",
     "bootstrap": "^4.3.0",
-    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "noty": "^3.2.0-beta"
+    "noty": "^3.2.0-beta",
+    "popper.js": "^1.14.7"
   },
   "version": "1.0.0",
   "main": "index.js",
   "author": "devlucasrocha",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
